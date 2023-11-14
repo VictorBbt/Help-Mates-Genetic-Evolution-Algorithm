@@ -3,7 +3,7 @@ This is a Unity project that provides tools for terrain generation, and proposes
 
 ![FinalRenderingGif]
 
-This work was done as the final project for the course **INF633: Advanced 3D Graphics** given by Marie-Paule Cani at Ecole Polytechnique. The repository containing my work and the expectations for this project can be found [here](https://edualvarado.github.io/inf633-2022-2023/).
+This work was done as the final project for the course **INF633: Advanced 3D Graphics** given by Marie-Paule Cani at Ecole Polytechnique. The repository containing the description and the expectations for this project can be found [here](https://edualvarado.github.io/inf633-2022-2023/).
 
 ## 1 - Setup the project 🛠️
 
