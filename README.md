@@ -3,13 +3,13 @@ This is a Unity project that provides tools for terrain generation, and proposes
 
 ![FinalRenderingGif]
 
-This work was done as the final project for the course **INF633: Advanced 3D Graphics** given by Marie-Paule Cani at Ecole Polytechnique. The repository containing the framework and the expectations for ths project can be found [here](https://edualvarado.github.io/inf633-2022-2023/).
+This work was done as the final project for the course **INF633: Advanced 3D Graphics** given by Marie-Paule Cani at Ecole Polytechnique. The repository containing my work and the expectations for this project can be found [here](https://edualvarado.github.io/inf633-2022-2023/).
 
 ## 1 - Setup the project 🛠️
 
-To run the project on your computer, clone this repository, open [UnityHub](https://unity.com/fr/download) and open the project **inf633-2023-2024**. The prroject was compiled with the **2021.3.8f1** version. It is very likely to run on more recent Long Term Support (LTS) versions, but there are not any guarantees for that. You can manage the different Unity versions you installed in UnityHub, and you can click [here](unityhub://2021.3.8f1/b30333d56e81) to install the 2021.3.8f1 that corresponds to this project.
+To run the project on your computer, clone [this repository](https://github.com/VictorBbt/inf633-2023-2024), open [UnityHub](https://unity.com/fr/download) and open the project **inf633-2023-2024**. The project was compiled with the **2021.3.8f1** version. It is very likely to run on more recent Long Term Support (LTS) versions, but there are not any guarantees for that. You can manage the different Unity versions you installed in UnityHub, and you can click [here](unityhub://2021.3.8f1/b30333d56e81) to install the 2021.3.8f1 that corresponds to this project.
 
-Right now, you should be able to play around with scene in Unity. The different tools and features you can use to make your own virtual ecosystem are detailed below.
+Right now, you should be able to play around with the scene in Unity. The different tools and features you can use to make your own virtual ecosystem are detailed below.
 
 ## 2 - Make it yours 🎨
 
@@ -25,19 +25,25 @@ All the brushes, instance brushes and the genetic algorithm work in **play mode*
 There are a lot of custom brushes that you can use to design your terrain. The pipeline we advise to use to design a terrain is the following:
 - Use the **Terrain Creation Brush** to automatically generate a whole terrain. You can play with a whole bunch of parameters to create hills or sharp ridges. Then, you can use a gaussian filter (*Number of Peaks* and *CircularFiltering* in the GUI inspector) to have moutains and valleys.
 
-![TerrainCreationGif]
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/TerrainEdition.gif" alt="TerrainCreationGif">
+</p>
 
 - Use the local brushes (you can change the radius in the *CustomTerrain* GUI inspector) to locally change the topography of your terrain. There are a lot of custom brushes including *Smooth Brush, Well Brush, ...*
 
 ![LocalBrushesGif]
 
-- Use the **Erosion Brush** to erode the terrain (globally or locally). This is a physical simulation of droplets falling down the terrain and capturing or releasing sediments. 
-
-![ErosionBrushGif]
+- Use the **Erosion Brush** to erode the terrain (globally or locally). This is a physical simulation of droplets falling down the terrain and capturing or releasing sediments.
+- 
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Erosion.gif" alt="ErosionBrushGif">
+</p>
 
 - Use the **Texture Brush** to add beautiful, custom textures to your terrain. You can set the height threshold of each texture, blend them and add importance to some on flat terrains or on shaded areas (by specifying the sun direction). As we can not override the *Terrain Shader* built-in with the Terrain tool, we wrote a custom script where we manually change the splatmaps. Thus, the indices you provide within the GUI inspector of this script (basically, the index of the array you initialize) are the indices that corresponds to those built-in the Terrain tool. You can find in the *Texture tab* in the Terrain inspector. We have created 6 textures, but if you want more/less/change the order, you will have to manually specify it within the brush (this will not automatically update).
 
-![FinalTerrainGif]
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Texture.gif" alt="FinalTerrainGif">
+</p>
 
 And there you go! You can now have nice looking terrain topography with custom textures. 
 
@@ -51,7 +57,9 @@ That said, you can now use several *Instance Brushes* to spawn objects like *Clu
 
 One that is worth noting is the **Poisson Moisture Instance Brush**. It first generate an invisible Perlin noise map to represent the moisture. Then, as the tree distribution in nature is close to a [Poisson Disc Distribution](https://link.springer.com/chapter/10.1007/978-3-662-56233-8_18#:~:text=Distribution%20patterns%20will%20typically%20fall,with%20plant%20establishment%20and%20growth.), the brush spawns instances following a Poisson distribution, but whether pops an object from a modifiable list `Dry Zone Objects` or `Moist Zone Objects` depending on the moisture map.
 
-![PoissonMoistureGif]
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/PoissonMoistureInstanceBrush.gif" alt="PoissonMoistureGif">
+</p>
 
 At that point, you should have generated a nice-looking terrain, all is left is to populate it with preys and predators 😈
 
@@ -63,7 +71,7 @@ I have always been fascinated by flocks and herds. These behaviours stem from si
 
 Our approach is to let some preys learn:
 1. How to eat. Grass is spawned on the terrain and preys must learn that finding this food is core to reproduce and thrive. They have a `foodBrain` that takes as input the content of the *Detail Layer* within their vision range and outputs a direction where they must go to eat.
-2. How to behave in group. This second brain `reactionBrain` takes as input the vision of predators and their energy level (hunger) and outputs four weights: the weight to give to the direction computed with the `foodBrain` and three weights to give to the different components of the BOIDS behaviour (this is parallelized on a **comppute buffer** to speed up the simulation). This characterizes how a single animal behaves with relation to the group.
+2. How to behave in group. This second brain `reactionBrain` takes as input the vision of predators and their energy level (hunger) and outputs four weights: the weight to give to the direction computed with the `foodBrain` and three weights to give to the different components of the BOIDS behaviour (this is parallelized on a **compute buffer** to speed up the simulation). This characterizes how a single animal behaves with relation to the group.
 
 #### Predators 🐺
 The predators have no brain: their behaviour is harcoded (you can see it as a Finite State Machine). Based on their urge to eat or to reproduce, they whether look for food or for a mate. Once they locked their target, they relentlessly track it if it stays within their visions range.
@@ -75,7 +83,9 @@ The rays to display the vision of the agents are drawn with `Debug.DrawRay`, so 
 
 Whenever you want, you can save the simulation data by clicking on the *Save Data* button in the GUI Inspector. However, you must specifiy the **absolute path manually within the SaveSystem.cs script**. The code to unpack this data is provided within the notebook.
 
-![GraphImageofEvolution]
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/img/SuddenPredators.png" alt="GraphImageofEvolution">
+</p>
 
 Would you like to improve this method, you can find some commented code to tweak the grass and prey spawns on the map based on height and steepness, that we did not uncomment to save simulation time. We also coded **full inverse kinematics** for a quadruped. It could be nice to make our preys and/or predators really walking during the simulation! There are plenty of other ideas in the provided links listed below.
 
