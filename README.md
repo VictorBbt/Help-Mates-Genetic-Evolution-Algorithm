@@ -1,7 +1,9 @@
 # Help-Mates! Is flocking or herding a survival behaviour ?
 This is a Unity project that provides tools for terrain generation, and proposes a simulation to observe flocking/herding behaviors of animals in the presence of predators
 
-![FinalRenderingGif]
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/FinalRenderingGif.gif" alt="FinalRenderingGif">
+</p>
 
 This work was done as the final project for the course **INF633: Advanced 3D Graphics** given by Marie-Paule Cani at Ecole Polytechnique. The repository containing the description and the expectations for this project can be found [here](https://edualvarado.github.io/inf633-2022-2023/).
 
@@ -31,18 +33,20 @@ There are a lot of custom brushes that you can use to design your terrain. The p
 
 - Use the local brushes (you can change the radius in the *CustomTerrain* GUI inspector) to locally change the topography of your terrain. There are a lot of custom brushes including *Smooth Brush, Well Brush, ...*
 
-![LocalBrushesGif]
+<p align="center">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/smooth-brush.gif" alt="LocalBrush" width="300">
+</p>
 
 - Use the **Erosion Brush** to erode the terrain (globally or locally). This is a physical simulation of droplets falling down the terrain and capturing or releasing sediments.
 - 
 <p align="center">
-  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Erosion.gif" alt="ErosionBrushGif">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Erosion.gif" alt="ErosionBrushGif" width="400">
 </p>
 
 - Use the **Texture Brush** to add beautiful, custom textures to your terrain. You can set the height threshold of each texture, blend them and add importance to some on flat terrains or on shaded areas (by specifying the sun direction). As we can not override the *Terrain Shader* built-in with the Terrain tool, we wrote a custom script where we manually change the splatmaps. Thus, the indices you provide within the GUI inspector of this script (basically, the index of the array you initialize) are the indices that corresponds to those built-in the Terrain tool. You can find in the *Texture tab* in the Terrain inspector. We have created 6 textures, but if you want more/less/change the order, you will have to manually specify it within the brush (this will not automatically update).
 
 <p align="center">
-  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Texture.gif" alt="FinalTerrainGif">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Texture.gif" alt="FinalTerrainGif" width="600">
 </p>
 
 And there you go! You can now have nice looking terrain topography with custom textures. 
@@ -58,7 +62,7 @@ That said, you can now use several *Instance Brushes* to spawn objects like *Clu
 One that is worth noting is the **Poisson Moisture Instance Brush**. It first generate an invisible Perlin noise map to represent the moisture. Then, as the tree distribution in nature is close to a [Poisson Disc Distribution](https://link.springer.com/chapter/10.1007/978-3-662-56233-8_18#:~:text=Distribution%20patterns%20will%20typically%20fall,with%20plant%20establishment%20and%20growth.), the brush spawns instances following a Poisson distribution, but whether pops an object from a modifiable list `Dry Zone Objects` or `Moist Zone Objects` depending on the moisture map.
 
 <p align="center">
-  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/PoissonMoistureInstanceBrush.gif" alt="PoissonMoistureGif">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/PoissonMoistureInstanceBrush.gif" alt="PoissonMoistureGif" width="400">
 </p>
 
 At that point, you should have generated a nice-looking terrain, all is left is to populate it with preys and predators 😈
@@ -84,7 +88,7 @@ The rays to display the vision of the agents are drawn with `Debug.DrawRay`, so 
 Whenever you want, you can save the simulation data by clicking on the *Save Data* button in the GUI Inspector. However, you must specifiy the **absolute path manually within the SaveSystem.cs script**. The code to unpack this data is provided within the notebook.
 
 <p align="center">
-  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/img/SuddenPredators.png" alt="GraphImageofEvolution">
+  <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/img/SuddenPredators.png" alt="GraphImageofEvolution" width="700">
 </p>
 
 Would you like to improve this method, you can find some commented code to tweak the grass and prey spawns on the map based on height and steepness, that we did not uncomment to save simulation time. We also coded **full inverse kinematics** for a quadruped. It could be nice to make our preys and/or predators really walking during the simulation! There are plenty of other ideas in the provided links listed below.
