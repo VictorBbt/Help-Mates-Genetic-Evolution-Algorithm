@@ -38,7 +38,8 @@ There are a lot of custom brushes that you can use to design your terrain. The p
 </p>
 
 - Use the **Erosion Brush** to erode the terrain (globally or locally). This is a physical simulation of droplets falling down the terrain and capturing or releasing sediments.
-- 
+
+  
 <p align="center">
   <img src="https://github.com/VictorBbt/Help-Mates-Genetic-Evolution-Algorithm/blob/main/SimulationResults/gifs/Erosion.gif" alt="ErosionBrushGif" width="400">
 </p>
