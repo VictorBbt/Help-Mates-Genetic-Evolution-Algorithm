@@ -9,7 +9,7 @@ This work was done as the final project for the course **INF633: Advanced 3D Gra
 
 ## 1 - Setup the project 🛠️
 
-To run the project on your computer, clone [this repository](https://github.com/VictorBbt/inf633-2023-2024), open [UnityHub](https://unity.com/fr/download) and open the project **inf633-2023-2024**. The project was compiled with the **2021.3.8f1** version. It is very likely to run on more recent Long Term Support (LTS) versions, but there are not any guarantees for that. You can manage the different Unity versions you installed in UnityHub, and you can click [here](unityhub://2021.3.8f1/b30333d56e81) to install the 2021.3.8f1 that corresponds to this project.
+To run the project on your computer, clone [this repository](https://github.com/VictorBbt/inf633-2023-2024), open [UnityHub](https://unity.com/fr/download) and open the project **inf633-2023-2024**. The project was compiled with the **2021.3.8f1** version. It is very likely to run on more recent Long Term Support (LTS) versions, but there are not any guarantees for that. You can manage the different Unity versions you installed in UnityHub, and you can copy/paste this link: unityhub://2021.3.8f1/b30333d56e81 in your browser to install the 2021.3.8f1 that corresponds to this project.
 
 Right now, you should be able to play around with the scene in Unity. The different tools and features you can use to make your own virtual ecosystem are detailed below.
 
